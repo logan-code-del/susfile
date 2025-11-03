@@ -34,12 +34,7 @@ jobs:
           DURATION="${VIEWER_DURATION:-30}"
           ASCII_SECONDS="${VIEWER_ASCII_SECONDS:-3}"
           WHITELIST="${VIEWER_WHITELIST:-}"
-          cat > viewer/.env <<'EOF'
-PASSWORD=${PASSWORD}
-DURATION=${DURATION}
-ASCII_SECONDS=${ASCII_SECONDS}
-WHITELIST=${WHITELIST}
-EOF
+          printf '%s\n' "PASSWORD=${PASSWORD}" "DURATION=${DURATION}" "ASCII_SECONDS=${ASCII_SECONDS}" "WHITELIST=${WHITELIST}" > viewer/.env
 
       - name: Run viewer (local Electron app)
         shell: bash
