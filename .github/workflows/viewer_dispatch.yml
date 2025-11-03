@@ -15,6 +15,11 @@ on:
 jobs:
   run-viewer:
     runs-on: self-hosted
+    env:
+      VIEWER_PASSWORD: ${{ secrets.VIEWER_PASSWORD }}
+      VIEWER_DURATION: ${{ secrets.VIEWER_DURATION }}
+      VIEWER_ASCII_SECONDS: ${{ secrets.VIEWER_ASCII_SECONDS }}
+      VIEWER_WHITELIST: ${{ secrets.VIEWER_WHITELIST }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,14 +29,15 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p viewer
-          PASSWORD="${{ secrets.VIEWER_PASSWORD }}"
-          DURATION="${{ secrets.VIEWER_DURATION }}"
-          ASCII_SECONDS="${{ secrets.VIEWER_ASCII_SECONDS }}"
-          WHITELIST="${{ secrets.VIEWER_WHITELIST }}"
-          cat > viewer/.env <<EOF
+          # Use job env vars (populated from repository secrets) to avoid inline expression parsing issues
+          PASSWORD="${VIEWER_PASSWORD:-}"
+          DURATION="${VIEWER_DURATION:-30}"
+          ASCII_SECONDS="${VIEWER_ASCII_SECONDS:-3}"
+          WHITELIST="${VIEWER_WHITELIST:-}"
+          cat > viewer/.env <<'EOF'
 PASSWORD=${PASSWORD}
-DURATION=${DURATION:-30}
-ASCII_SECONDS=${ASCII_SECONDS:-3}
+DURATION=${DURATION}
+ASCII_SECONDS=${ASCII_SECONDS}
 WHITELIST=${WHITELIST}
 EOF
 
