@@ -1,0 +1,14 @@
+[Unit]
+Description=GitHub Actions Runner (susfile)
+After=network.target
+
+[Service]
+Type=simple
+User=%USER%
+WorkingDirectory=%WORKING_DIR%
+ExecStart=%WORKING_DIR%/run.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
