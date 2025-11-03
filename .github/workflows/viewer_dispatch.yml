@@ -1,0 +1,41 @@
+name: Dispatch viewer (self-hosted GUI runner)
+
+# NOTE: This workflow is intended to run on a self-hosted runner that has a GUI/X session
+# and where running GUI programs is allowed. GitHub-hosted runners cannot display a GUI
+# or open windows on your desktop. Use this workflow only on a self-hosted machine you control.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Start mode (default: normal)'
+        required: false
+        default: 'normal'
+
+jobs:
+  run-viewer:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Create .env from repository secrets
+        if: ${{ secrets.VIEWER_PASSWORD }}
+        shell: bash
+        run: |
+          mkdir -p viewer
+          cat > viewer/.env <<EOF
+          PASSWORD="${{ secrets.VIEWER_PASSWORD }}"
+          DURATION="${{ secrets.VIEWER_DURATION || '30' }}"
+          ASCII_SECONDS="${{ secrets.VIEWER_ASCII_SECONDS || '3' }}"
+          WHITELIST="${{ secrets.VIEWER_WHITELIST || '' }}"
+          EOF
+
+      - name: Run viewer (local Electron app)
+        shell: bash
+        run: |
+          cd viewer
+          npm ci
+          # This will start the electron app on the self-hosted runner.
+          # The runner must be a machine with a graphical session and available display.
+          npm run start

@@ -1,0 +1,25 @@
+name: Auto-label commercial permission requests
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  label-and-notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for commercial-permission template or keyword
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const body = (issue.body || '').toLowerCase();
+            const title = (issue.title || '').toLowerCase();
+            const labels = [];
+            if (body.includes('commercial distribution') || body.includes('commercial') || title.includes('commercial') || issue.body && issue.body.includes('### Intended use / Product description')) {
+              labels.push('commercial-request');
+            }
+            if (labels.length) {
+              await github.issues.addLabels({owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, labels});
+              await github.issues.createComment({owner: context.repo.owner, repo: context.repo.repo, issue_number: issue.number, body: 'Thanks — this looks like a commercial/distribution permission request. The maintainers will review and follow up here. If you prefer private communications, contact the copyright holder listed in LICENSE.md.'});
+            }

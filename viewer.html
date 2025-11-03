@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Private ASCII Viewer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { background:#111; color:#eee; font-family:monospace; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; padding:1rem; }
+    #container { text-align:center; max-width:1000px; width:100%; }
+    pre { font-size:14px; line-height:1; white-space:pre; transform-origin:center center; animation: zoomout 30s ease forwards; display:inline-block; }
+    @keyframes zoomout {
+      0% { transform: scale(1.6); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    #pwbox, #stopbox, #stoppedBox { margin-bottom:1rem; }
+    input { padding:.5rem; font-size:1rem; }
+    button { padding:.5rem .8rem; font-size:1rem; margin-left:.5rem; }
+    #msg { color:#f88; min-height:1.2rem; }
+    #timer { color:#9f9; margin-top:.5rem; font-size:.9rem; }
+    .hidden { display:none; }
+    .small { font-size:.85rem; color:#aaa; margin-top:.5rem; }
+    .disabled { opacity:0.6; pointer-events:none; }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="intro">
+      <div id="pwbox">
+        <input id="pw" type="password" placeholder="Enter open password">
+        <button id="openBtn">Open</button>
+    </div>
+
+    <div id="contentSection" class="hidden">
+      <div id="stopbox">
+        <input id="stopPw" type="password" placeholder="Enter stop password to stop viewer now">
+        <button id="stopBtn">Stop viewer</button>
+      </div>
+
+      <div id="contentArea">
+        <pre id="art">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣾⠟⠛⠛⠿⣷⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠋⠀⠀⠀⠀⢸⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿⠀⠀⠀⠀⠀⠰⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠨⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠈⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⢐⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⡇⠀⠀⠀⠀⠀⠠⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⡇⠀⠀⠀⠀⠀⢰⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⡿⠿⢿⣿⣿⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣾⡿⠋⠀⠀⠀⠹⣿⠀⠀⠀⠀⠀⠀⢸⣿⣷⣶⣦⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣼⣿⠃⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠈⣿⠛⠉⠉⠙⢿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢀⣼⣿⡿⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⢹⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⣴⣿⠿⣿⠇⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠘⣿⠛⠲⢦⣤⠀⠀⠀⠀⠀
+⠀⠀⣰⣿⠟⠁⠀⣿⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀⠀⠀⣿⡆⠀⠀⠹⣧⡀⠀⠀⠀
+⢀⣼⠟⠅⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠸⠟⠁⠀⠀⠀⠀⠀⠑⠿⠃⠀⠀⠀⠀⠀⢹⣇⠀⠀⠀⠹⣧⠀⠀⠀
+⣾⠏⠀⠀⠀⠀⢸⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡆⠀⠀⠀⢽⣧⠀⠀
+⣿⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠃⠀⠀⠀⠀⣿⣆⠀
+⣿⣆⠀⠀⠀⠀⠙⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡀
+⠹⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡇
+⠀⠈⢻⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⠇
+⠀⠀⠀⠙⢿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⡟⠀
+⠀⠀⠀⠀⠀⠙⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⠟⠁⠀
+⠀⠀⠀⠀⠀⠀⠈⠹⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⠏⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠇⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣶⣶⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣶⣶⣶⣿⠿⠃⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⡀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        </pre>
+      </div>
+    </div>
+
+    <div id="stoppedBox" class="hidden">
+      <div id="stoppedMsg" style="color:#f88;"></div>
+    </div>
+
+    <div id="msg"></div>
+  </div>
+
+  <script>
+    // Passwords (client-side)
+    const OPEN_PW = "0123456789";    // password to open/view
+    const STOP_PW = "password";    // entering this will stop the viewer immediately
+    const MAX_SECONDS = 32;
+
+    // DOM refs
+    const pw = document.getElementById('pw');
+    const openBtn = document.getElementById('openBtn');
+    const contentSection = document.getElementById('contentSection');
+    const contentArea = document.getElementById('contentArea');
+    const pwbox = document.getElementById('pwbox');
+    const msg = document.getElementById('msg');
+    const stopPw = document.getElementById('stopPw');
+    const stopBtn = document.getElementById('stopBtn');
+    const stoppedBox = document.getElementById('stoppedBox');
+    const stoppedMsg = document.getElementById('stoppedMsg');
+
+    let timer = null;
+    let secondsLeft = MAX_SECONDS;
+    let stopped = false;
+
+    function startTimer(){
+      clearInterval(timer);
+      secondsLeft = MAX_SECONDS;
+      timer = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft <= 0) {
+          clearInterval(timer);
+          stopViewer('');
+        }
+      }, 1000);
+    }
+
+    function stopViewer(reason){
+      stopped = true;
+      clearInterval(timer);
+      // hide content and controls
+      contentSection.classList.add('hidden');
+      stoppedBox.classList.remove('hidden');
+      // disable inputs to make "stopped" persistent unless reloaded
+      document.getElementById('pw').value = '';
+      document.getElementById('stopPw').value = '';
+      document.getElementById('pw').disabled = true;
+      openBtn.disabled = true;
+      stopBtn.disabled = true;
+      // visually indicate disabled
+      document.getElementById('intro').classList.add('disabled');
+      document.getElementById('contentSection').classList.add('disabled');
+    }
+
+
+    pwbox.style.display = 'none';
+    msg.textContent = '';
+    contentSection.classList.remove('hidden');
+    startTimer();
+
+
+    stopBtn.addEventListener('click', () => {
+      if (stopped) return;
+      if (stopPw.value === STOP_PW) {
+        stopViewer('Stop password entered — viewer stopped.');
+      } else {
+        msg.textContent = 'Stop password incorrect.';
+      }
+    });
+
+    // Enter key support
+    pw.addEventListener('keydown', (e)=>{ if(e.key==='Enter') openBtn.click(); });
+    stopPw.addEventListener('keydown', (e)=>{ if(e.key==='Enter') stopBtn.click(); });
+
+    // Safety console note
+    console.log('Local viewer: no installation, no autorun, does not modify system.');
+  </script>
+</body>
+</html>

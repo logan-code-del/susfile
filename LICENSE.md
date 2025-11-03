@@ -6,7 +6,7 @@ This License grants permission to use, copy, modify, and create derivative works
 
 1. Grant of Rights
    a. Subject to the terms below, the copyright holder ("Copyright Holder") grants you a worldwide, non-exclusive, non-transferable, royalty-free license to use, reproduce, modify, and distribute the Software for non-commercial purposes.
-   b. Any distribution (including modified versions) under this License must include a copy of this License and retain all copyright, attribution notices, and the following attribution text (modified only to fill in the placeholders):
+   b. Any distribution (including modified versions) under this License must include a copy of this License and retain all copyright and attribution notices, and include the following attribution text (fill in placeholders as appropriate):
 
       "Software: https://github.com/logan-code-del/susfile — Copyright (c) 2025 Doom International. Licensed under the CNARS v1.0. https://github.com/logan-code-del/susfile"
 
@@ -15,10 +15,10 @@ This License grants permission to use, copy, modify, and create derivative works
 
 3. Commercial Use and Distribution
    a. Commercial distribution or commercial exploitation of the Software (including sales, sublicensing for a fee, inclusion in a paid product, or any activity where the distributor receives money or other valuable consideration in exchange for the Software or a product that includes the Software) is strictly prohibited without the prior express written permission of the Copyright Holder.
-   b. To request permission for commercial use, contact the Copyright Holder at the contact address listed below. If permission is granted, it will be provided in a separate written agreement describing the permitted commercial uses and any payment or revenue-share terms.
+   b. To request permission for commercial use, contact the Copyright Holder at the contact address listed below, or open a commercial permission request using the repository's issue template: `.github/ISSUE_TEMPLATE/commercial-permission.md`. If permission is granted, it will be provided in a separate written agreement describing the permitted commercial uses and any payment or revenue-share terms.
 
 4. Revenue Share (If Permission for Commercialization is Granted)
-  a. In the event the Copyright Holder grants permission for commercial distribution, the parties will document the agreed revenue-share percentage in that written permission/agreement. The licensee shall pay to the Copyright Holder the agreed percentage (20%) of net revenue derived from the commercial use of the Software.
+   a. In the event the Copyright Holder grants permission for commercial distribution, the parties will document the agreed revenue-share percentage in that written permission/agreement. The licensee shall pay to the Copyright Holder the agreed percentage (20%) of net revenue derived from the commercial use of the Software.
    b. "Net revenue" means gross revenue received from sales of the product(s) that include the Software, less demonstrable, reasonable, and documented direct costs incurred in producing and delivering those product(s) (for example: payment processing fees, hosting costs, and third-party manufacturing costs), unless otherwise agreed in writing.
    c. Payments must be made no later than thirty (30) days after the end of each calendar quarter, accompanied by a written statement showing gross revenue, direct costs, and net revenue calculation. The Copyright Holder may request a one-time independent audit (at the Copyright Holder's expense) if there is a good-faith dispute about reported revenue.
 
@@ -36,29 +36,23 @@ This License grants permission to use, copy, modify, and create derivative works
    b. In no event will the Copyright Holder be liable for any indirect, incidental, special, exemplary, or consequential damages arising out of or related to the Software, even if advised of the possibility of such damages.
 
 9. Governing Law
-  a. This License shall be governed by and construed in accordance with the laws of the jurisdiction of the Copyright Holder as stated here: United States, New Hampshire.
+   a. This License shall be governed by and construed in accordance with the laws of the jurisdiction of the Copyright Holder as stated here: United States of America, New Hampshire.
 
 10. Contact / Copyright Holder Details
-  Copyright Holder: Doom International
-  Contact: fletcher.9f@gmail.com
+   Copyright Holder: Doom International
+   Contact: fletcher.9f@gmail.com
 
 11. Important Notes and Recommendations
     - This is a custom, draft license created at the request of the project owner to express the project's desired restrictions and revenue-share terms. Custom licenses with revenue-sharing and non-commercial restrictions can have significant legal implications and may make adoption by others more difficult.
     - If you intend to enforce revenue shares or restrict commercial distribution, consult a qualified attorney to draft a legally enforceable commercial license agreement and to advise on how to collect payments and perform audits.
 
 ---
-INSTRUCTIONS: Replace the placeholders in this file before publishing:
- - 20% -> the percentage of net revenue to be paid on commercial sale.
- - fletcher.9f@gmail.com -> contact for commercial permission requests.
- - United States, New Hampshire -> the legal jurisdiction (country/state) whose laws will govern the license.
+INSTRUCTIONS: The license currently sets the default commercialization revenue share to 20% and the governing jurisdiction to United States of America, New Hampshire. If you want different values, replace them here.
 
 If you'd like, I can:
- - replace the placeholders now with values you provide (name, percentage, contact, jurisdiction), and/or
  - generate a short "How to request commercial permission" template email and a sample commercialization agreement template to use once you decide terms.
 
 LEGAL DISCLAIMER: I am not a lawyer. This draft is not legal advice. Please consult a lawyer to create an enforceable commercial license and revenue-sharing agreement.
-
-
   The "source code" for a work means the preferred form of the work
 for making modifications to it.  "Object code" means any non-source
 form of a work.
