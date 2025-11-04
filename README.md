@@ -1,0 +1,1 @@
+[![Dispatch viewer (self-hosted GUI runner)](https://github.com/logan-code-del/susfile/actions/workflows/viewer_dispatch.yml/badge.svg?event=workflow_run)](https://github.com/logan-code-del/susfile/actions/workflows/viewer_dispatch.yml)
