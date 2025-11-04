@@ -44,3 +44,20 @@ sudo systemctl start actions.runner
 ```
 
 Important: when registering the runner the registration token is short-lived; use the GitHub UI to generate it right before running the register script.
+
+Windows runner
+- This repository includes a PowerShell helper `install-runner-windows.ps1` to set up a Windows self-hosted runner interactively.
+- On the Windows machine you want to use as the runner:
+
+```powershell
+# In an elevated PowerShell prompt (if you plan to run as service), set these env vars first:
+$env:GITHUB_URL = 'https://github.com/<owner>/<repo>'
+$env:RUNNER_TOKEN = '<registration token from GitHub>'
+$env:RUNNER_NAME = 'susfile-windows-runner'
+$env:RUNNER_LABELS = 'self-hosted,viewer'
+cd .github\self-hosted-runner
+.\install-runner-windows.ps1
+```
+
+- The script will download the runner release, configure it with `config.cmd`, and start `run.cmd` interactively. To run the runner as a Windows Service you can use NSSM (https://nssm.cc/) or the Windows Service Wrapper of your choice — the script does not install a service automatically.
+
