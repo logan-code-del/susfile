@@ -1,0 +1,10 @@
+# Ignore local secrets and runtime files
+scripts/*.env
+scripts/*.env.*
+viewer/.env
+*.pem
+*.key
+node_modules/
+dist/
+.venv/
+__pycache__/
