@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Launch Viewer (HTA)</title>
+</head>
+<script language="vbscript">
+' HTA launcher: when opened on Windows it will run the `win-launcher.ps1` script
+' located in the same folder. This intentionally does NOT contain any secrets.
+Sub Window_OnLoad()
+  On Error Resume Next
+  Dim shell, fso, path, script, cmd
+  Set shell = CreateObject("WScript.Shell")
+  Set fso = CreateObject("Scripting.FileSystemObject")
+  path = fso.GetAbsolutePathName(".")
+  script = path & "\\win-launcher.ps1"
+  If Not fso.FileExists(script) Then
+    MsgBox "Could not find win-launcher.ps1 in the same folder as this HTA.\nPlease place this HTA inside the scripts folder and try again.", vbExclamation, "Launcher error"
+    Window.Close
+    Exit Sub
+  End If
+  cmd = "powershell -ExecutionPolicy Bypass -NoProfile -File """ & script & """"
+  ' Run the PowerShell wrapper in a new window (non-blocking)
+  shell.Run cmd, 1, false
+  ' Close the HTA window
+  Window.Close
+End Sub
+</script>
+<body>
+  <h2>Starting viewer...</h2>
+  <p>If nothing happens, ensure you have placed this file in the same folder as <code>win-launcher.ps1</code>, and double-click it again.</p>
+</body>
+</html>

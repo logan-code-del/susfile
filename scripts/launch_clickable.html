@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Click to launch viewer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    html,body{height:100%;margin:0}
+    .full{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;font-family:Arial}
+    .btn{padding:20px 40px;background:#0078D4;color:#fff;border-radius:8px;cursor:pointer;font-size:18px}
+    .note{margin-top:16px;color:#555;max-width:600px;text-align:center}
+  </style>
+  <script>
+    function tryLaunch() {
+      // Attempt to open custom protocol. If not registered, show guidance.
+      window.location = 'susviewer://launch'
+      // After a short delay, if nothing happened, show instructions
+      setTimeout(()=>{
+        document.getElementById('status').textContent = 'If the viewer did not start: register the protocol (see instructions) or run the launcher manually.'
+      }, 1200)
+    }
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.addEventListener('click', tryLaunch)
+      // Also enable any keypress
+      document.addEventListener('keydown', tryLaunch)
+    })
+  </script>
+</head>
+<body>
+  <div class="full">
+    <div class="btn">Click anywhere to launch the viewer</div>
+    <div id="status" class="note">Click anywhere on this page to launch the viewer (via registered protocol).</div>
+    <div class="note">If this page is remote, your browser may block custom protocols; save this HTML locally and open it from disk for best results.</div>
+    <div class="note">To register the protocol on Windows, run <code>register-protocol-windows.ps1</code> found in the <code>scripts</code> folder.</div>
+  </div>
+</body>
+</html>
