@@ -5,7 +5,7 @@ Copyright (c) 2025 Doom International
 This License grants permission to use, copy, modify, and create derivative works of the software (the "Software") under the following terms and conditions.
 
 1. Grant of Rights
-   a. Subject to the terms below, the copyright holder ("Copyright Holder") grants you a worldwide, non-exclusive, non-transferable, royalty-free license to use, reproduce, modify, and distribute the Software for non-commercial purposes.
+   a. Subject to the terms below, the copyright holder (Doom International) grants you a worldwide, non-exclusive, non-transferable, royalty-free license to use, reproduce, modify, and distribute the Software for non-commercial purposes.
    b. Any distribution (including modified versions) under this License must include a copy of this License and retain all copyright and attribution notices, and include the following attribution text (fill in placeholders as appropriate):
 
       "Software: https://github.com/logan-code-del/susfile — Copyright (c) 2025 Doom International. Licensed under the CNARS v1.0. https://github.com/logan-code-del/susfile"
